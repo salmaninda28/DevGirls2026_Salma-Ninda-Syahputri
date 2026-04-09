@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Study Tracker – DevGirls</title>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- NAVBAR -->
+    <nav class="navbar">
+        <div class="logo">📚 Study Tracker </div>
+        <div class="nav-links">
+            <a href="#home" class="active">Home</a>
+            <a href="#tugasebelumnya">Dasbor</a>
+            <a href="#task">Task</a>
+            <a href="#taskentry">Task Entry</a>
+        </div>
+        <button id="darkModeToggle">🌙 Dark Mode</button>
+    </nav>
+
+    <!-- HOME -->
+    <section id="home">
+        <img src="https://illustrations.popsy.co/gray/studying.svg" alt="Illustration" class="hero-img">
+        <div class="about">
+            <h1>Study Tracker</h1>
+            <p>Platform sederhana untuk membantu kamu mengelola tugas dan waktu belajar dengan lebih efektif. Catat, pantau, dan selesaikan semua tugasmu di satu tempat! ✨</p>
+            <a href="#tugasebelumnya" class="btn-main">Lihat Tugas Sebelumnya →</a>
+        </div>
+    </section>
+
+    <!-- DASHBOARD CARDS -->
+    <section id="tugasebelumnya">
+        <div class="box-card" onclick="filterByStatus('today')">
+            <img src="https://illustrations.popsy.co/gray/calendar.svg" alt="Tugas Hari Ini">
+            <h3>Tugas Hari Ini</h3>
+            <span class="count" id="countToday">0</span>
+        </div>
+
+        <div class="box-card" onclick="filterByStatus('pending')">
+            <img src="https://illustrations.popsy.co/gray/digital-nomad.svg" alt="Tugas Belum Selesai">
+            <h3>Tugas Belum Selesai</h3>
+            <span class="count" id="countPending">0</span>
+        </div>
+
+        <div class="box-card" onclick="filterByStatus('done')">
+            <img src="https://illustrations.popsy.co/gray/success.svg" alt="Tugas Selesai">
+            <h3>Tugas Selesai</h3>
+            <span class="count" id="countDone">0</span>
+        </div>
+    </section>
+
+    <!-- TASK LIST -->
+    <section id="task">
+        <h2 class="section-title">Daftar Tugas</h2>
+        <div class="filter-bar">
+            <input type="text" id="searchInput" placeholder="🔍  Cari tugas...">
+            <select id="filterKategori">
+                <option value="">Semua Kategori</option>
+                <option value="pweb">Pemrograman lanjut</option>
+                <option value="basisdata">Desain Basis Data</option>
+                <option value="basisdata">Aljabar Linear dan Matriks</option>
+                <option value="basisdata">Probabilitas Statiska</option>
+                <option value="basisdata">Dasar Algoritma Pemogaraman</option>
+                <option value="indonesia">Bahasa Indonesia</option>
+            </select>
+        </div>
+        <div class="task-list" id="taskList"></div>
+        <div id="emptyState">
+            <img src="https://illustrations.popsy.co/gray/no-results.svg" alt="">
+            <p>Belum ada tugas. Yuk tambahkan lewat Task Entry!</p>
+        </div>
+    </section>
+
+    <!-- TASK DETAIL MODAL -->
+    <div class="modal-overlay" id="taskModal">
+        <div class="modal">
+            <button class="modal-close" onclick="closeModal()">✕ Tutup</button>
+            <div class="modal-deadline" id="modalDeadline">deadline</div>
+            <h2 id="modalTitle">nama tugas</h2>
+            <p id="modalKategori"></p>
+            <div class="modal-desc-box" id="modalDesc">deskripsi</div>
+        </div>
+    </div>
+
+    <!-- TASK ENTRY -->
+    <section id="taskentry">
+        <h2 class="section-title">Tambah Tugas Baru</h2>
+        <div class="entry-form">
+            <div class="form-group">
+                <label for="inputNama">Nama Tugas</label>
+                <input type="text" id="inputNama" placeholder="Contoh: Project Web Midterm">
+            </div>
+            <div class="form-group">
+                <label for="inputTanggal">Deadline</label>
+                <input type="date" id="inputTanggal">
+            </div>
+            <div class="form-group">
+                <label for="inputKategori">Kategori Matkul</label>
+                <select id="inputKategori">
+                    <option value="">Semua Kategori</option>
+                    <option value="pweb">Pemrograman lanjut</option>
+                    <option value="basisdata">Desain Basis Data</option>
+                    <option value="basisdata">Aljabar Linear dan Matriks</option>
+                    <option value="basisdata">Probabilitas Statiska</option>
+                    <option value="basisdata">Dasar Algoritma Pemogaraman</option>
+                    <option value="indonesia">Bahasa Indonesia</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="inputDeskripsi">Deskripsi Tugas</label>
+                <textarea id="inputDeskripsi" placeholder="Tuliskan detail tugasmu di sini..."></textarea>
+            </div>
+            <button class="btn-submit" onclick="addTask()">+ Tambah Tugas</button>
+        </div>
+    </section>
+
+    <!-- TOAST NOTIFICATION -->
+    <div class="toast" id="toast">✅ Tugas berhasil ditambahkan!</div>
+
+    <script src="script.js"></script>
+</body>
+</html>
